@@ -1,0 +1,241 @@
+mymatrics.cs : 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenricsMatrices
+{
+    class MyMatrics<T>
+    {
+        public T[,] a;
+        public T[,] b;
+        public T[,] d;
+        public int rows { get; set; }
+        public int cols { get; set; }
+
+        public MyMatrics(int r, int c)
+        {
+            rows = r;
+            cols = c;
+            a = new T[rows, cols];
+            b = new T[rows, cols];
+            d = new T[rows, cols];
+        }
+
+        //Add two matrices
+        public void Add()
+        {
+            Console.WriteLine("\n Addition Of Two Matrices");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    d[i, j] = (dynamic)a[i, j] + b[i, j];
+                }
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(d[i, j]+ " \t ");
+                }
+                Console.WriteLine("\n");
+            }
+
+
+        }
+
+
+
+        //Substraction two matrices
+        public void Substract()
+        {
+            Console.WriteLine("\n substraction Of Two Matrices");
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    d[i, j] = (dynamic)b[i, j] - a[i, j];
+                }
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(d[i, j]+ " \t ");
+                }
+                Console.WriteLine("\n");
+            }
+
+        }
+
+
+        //multiplication two matrices
+        public void Multiplication()
+        {
+            Console.WriteLine("\n multiplication Of Two Matrices");
+
+            //if()
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    d[i, j] = (dynamic)a[i, j] * b[j,i];
+                }
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(d[i, j] + " \t ");
+                }
+                Console.WriteLine("\n");
+            }
+           
+        }
+
+        //division two matrices
+        public void Division()
+        {
+            Console.WriteLine("\n Division Of Two Matrices");
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    d[i, j] = (dynamic)a[i, j] / b[j, i];
+                }
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(d[i, j] + " \t ");
+                }
+                Console.WriteLine("\n");
+            }
+
+        }
+
+    }
+}
+
+
+program.cs :
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenricsMatrices
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i, j, r, c, choice;
+            Console.WriteLine("Enter Rows for Matrix :\n ");
+            i = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Columns for Matrix :\n ");
+            j = Convert.ToInt32(Console.ReadLine());
+
+            MyMatrics<int> obj = new MyMatrics<int>(i, j);
+            Console.WriteLine("Enter matrix : ");
+
+            for (r = 0; r < i; r++)
+            {
+                for (c = 0; c < j; c++)
+                {
+                    int v = Convert.ToInt32(Console.ReadLine());
+                    obj.a[r, c] = v;
+                }
+            }
+            Console.WriteLine("First matrix : ");
+
+            for (r = 0; r < i; r++)
+            {
+                for (c = 0; c < j; c++)
+                {
+                    Console.Write(obj.a[r, c]+ " \t ");
+                }
+                Console.WriteLine("\n");
+
+            }
+
+            //second metrix
+            Console.WriteLine("Enter second  matrix : ");
+            for (r = 0; r < i; r++)
+            {
+                for (c = 0; c < j; c++)
+                {
+                    int p = Convert.ToInt32(Console.ReadLine());
+                    obj.b[r, c] = p;
+                }
+            }
+            Console.WriteLine("Second matrix : ");
+
+            for (r = 0; r < i; r++)
+            {
+                for (c = 0; c < j; c++)
+                {
+                    Console.Write(obj.b[r, c] + " \t ");
+                }
+                Console.WriteLine("\n");
+
+            }
+
+
+            do
+            {
+                Console.WriteLine("==============MENU============");
+                Console.WriteLine("1. Addition. ");
+                Console.WriteLine("2. Substraction. ");
+                Console.WriteLine("3. Multiplication. ");
+                Console.WriteLine("4. Division. ");
+                Console.WriteLine("5. Exit. ");
+                Console.WriteLine("=================================");
+                Console.WriteLine("Enter your choice : ");
+                choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        obj.Add();
+                        break;
+                    case 2:
+                        obj.Substract();
+                        break;
+                    case 3:
+                        obj.Multiplication();
+                        break;
+                    case 4:
+                        obj.Division();
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        Console.WriteLine("enter correct choice..!!");
+                        break;
+                }
+            } while (choice > 0);
+            Console.ReadKey();
+
+
+        }
+
+    }
+}
+
+
+
+

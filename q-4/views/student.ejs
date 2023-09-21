@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+      integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <a class="btn btn-primary" href="/student/add">Add a new student</a>
+    <table class="table">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>RollNo</th>
+        <th>Email</th>
+
+        <th>Contact</th>
+      </tr>
+      <% Students.forEach((b)=>{ %> <%=b.password%>
+      <tr>
+        <td><%=b._id%></td>
+        <td><%=b.name%></td>
+        <td><%=b.rollNo%></td>
+        <td><%=b.email%></td>
+        <td><%=b.contact%></td>
+        <td>
+          <a href="/student/delete?id=<%=b._id%>" class="delete btn btn-danger">
+            Delete
+          </a>
+        </td>
+        <td>
+          <a class="update btn btn-primary" href="/student/update?id=<%=b._id%>"
+            >Update</a
+          >
+        </td>
+      </tr>
+
+      <% }) %>
+    </table>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+  </body>
+</html>
