@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="f">
+      <input type="text" name="email" id="email" />
+      <input type="password" name="password" id="password" />
+      <input type="submit" value="login" />
+    </form>
+    <script>
+      $("#f").submit((e) => {
+        console.log("hello");
+        e.preventDefault();
+        const email = $("#email").val();
+        const password = $("#password").val();
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:3000/login",
+          data: {
+            email: email,
+            password: password,
+          },
+          success: (data) => {
+            console.log(data);
+            window.location.href = "students.html";
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

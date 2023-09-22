@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <a id="re" href="students.html">abc</a>
+    <form id="form" class="container w-25">
+      <div class="form-group">
+        <label for="">Name</label>
+        <input class="form-control" type="text" name="name" id="name" />
+      </div>
+      <div class="form-group">
+        <label for="">RollNo</label>
+        <input class="form-control" type="text" name="rollNo" id="rollNo" />
+      </div>
+      <div class="form-group">
+        <label for="">Email</label>
+        <input class="form-control" type="email" name="email" id="email" />
+      </div>
+      <div class="form-group">
+        <label for="">Password</label>
+        <input
+          class="form-control"
+          type="password"
+          name="password"
+          id="password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="">Contact</label>
+        <input class="form-control" type="text" name="contact" id="contact" />
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="submit" />
+      </div>
+      <!-- <% if (typeof errors != 'undefined') { errors.errors.forEach((b)=>{ %>
+      <div class="alert alert-danger"><%= b.msg %></div>
+      <% }) } %> -->
+      <script>
+        $("#form").submit((e) => {
+          e.preventDefault();
+          const formdata = {
+            name: $("#name").val(),
+            rollNo: $("#rollNo").val(),
+            email: $("#email").val(),
+            password: $("#password").val(),
+            contact: $("#contact").val(),
+          };
+
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/students",
+            data: JSON.stringify(formdata),
+            contentType: "application/json",
+            success: () => {
+              console.log("data added successfully");
+              $("#re")[0].click();
+            },
+          });
+        });
+      </script>
+    </form>
+  </body>
+</html>
