@@ -32,6 +32,12 @@
           },
           success: (data) => {
             console.log(data);
+            localStorage.token = data;
+            console.log(
+              "🚀 ~ file: login.html:36 ~ $ ~ localStorage.token:",
+              localStorage.getItem("token")
+            );
+
             window.location.href = "students.html";
           },
           error: (err) => {

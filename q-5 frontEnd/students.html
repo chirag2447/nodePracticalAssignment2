@@ -43,12 +43,16 @@
       </thead>
       <tbody></tbody>
     </table>
-    <a href="/logout" class="btn btn-danger">Logout</a>
+    <a id="logout" class="btn btn-danger">Logout</a>
     <script>
       const content = "";
       var count = 1;
+      const token = localStorage.getItem("token");
+      console.log("🚀 ~ file: students.html:51 ~ token:", token);
+
       $.ajax({
         type: "GET",
+        headers: { Authorization: token },
         url: "http://localhost:3000/students",
         success: (data) => {
           console.log(data);
@@ -80,14 +84,21 @@
         console.log("Clicked");
         const id = $(this).data("id");
         console.log(id);
+
         $.ajax({
           type: "DELETE",
+
           url: `http://localhost:3000/students/${id}`,
           success: () => {
             console.log("data deleted successfully");
             location.reload();
           },
         });
+      });
+      $("#logout").click(() => {
+        console.log("logout");
+        localStorage.removeItem("token");
+        window.reload();
       });
     </script>
   </body>

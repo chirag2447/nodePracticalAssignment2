@@ -11,10 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.use("/students", authenticateToken, studentRoute);
 function authenticateToken(req, res, next) {
-  // const token = req.header("Authorization");
-  const token = req.cookies.token;
+  const token = req.header("Authorization");
+
+  // const token = req.cookies.token;
   console.log(token);
   if (!token) {
     console.log("catch");
@@ -30,6 +30,7 @@ function authenticateToken(req, res, next) {
     }
   }
 }
+app.use("/students", authenticateToken, studentRoute);
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
@@ -42,8 +43,8 @@ app.post("/login", (req, res) => {
         secret
       );
       res.cookie("token", token, { maxAge: 1000 * 60 * 5 });
-      console.log(token);
-      res.status(200).send("success");
+
+      res.status(200).send(token);
     }
   });
 });

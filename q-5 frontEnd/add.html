@@ -76,6 +76,9 @@
               console.log("data added successfully");
               $("#re")[0].click();
             },
+            error: (e) => {
+              console.log(e);
+            },
           });
         });
       </script>

@@ -90,7 +90,8 @@
             contentType: "application/json",
             success: () => {
               console.log("data added successfully");
-              $("#re")[0].click();
+              window.location.href = "http://localhost:3000/students";
+              // $("#re")[0].click();
             },
           });
         });
